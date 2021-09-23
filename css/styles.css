@@ -53,6 +53,7 @@ p {
 /* ---- Layout Rules ---- */
 main {
   margin: 10vh 1em 10vh;
+  position: relative;
 }
 
 .main-hero {
@@ -252,4 +253,25 @@ section.your-active-class .landing__container::after {
   to {
     transform: rotate(360deg) translate(-1em) rotate(-360deg);
   }
+}
+
+#btn {
+  background-color: #cc1;
+  padding: 0.8rem;
+  border: 2px solid black;
+  font-size: 15px;
+  position: fixed;
+  top: 90%;
+  right: 20px;
+  cursor: pointer;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  z-index: 2;
+}
+
+#btn:hover {
+  background-color: rgb(161, 161, 12);
 }
