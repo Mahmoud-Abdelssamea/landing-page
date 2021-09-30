@@ -15,7 +15,7 @@ function listItemsHandler() {
     const dataNav = sections[i].getAttribute("data-nav");
 
     // create a link
-    const link = `<a class="menu__link" href=#${id}>${dataNav}</a>`;
+    const link = `<a class="menu__link" href=${id}>${dataNav}</a>`;
 
     // create a list item
     const li = document.createElement("li");
@@ -26,15 +26,35 @@ function listItemsHandler() {
     // add list item to the parent unorder list
     ul.appendChild(li);
   }
+  const liElement = document.querySelectorAll("li");
+
+  liElement.forEach((element) => {
+    element.addEventListener("click", (e) => {
+      e.preventDefault();
+      // get the required section id
+      let requredId = element.querySelector("a").getAttribute("href");
+
+      // get the required section
+      selectedSection = document.getElementById(requredId);
+
+      // scrolling to the required section smoothly
+      selectedSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  });
 }
+
+//
 
 // inview port function to detect the visable section
 function visableSection(section) {
   //declare the method getBoundingClientRect
-  const re = section.getBoundingClientRect();
+  const postion = section.getBoundingClientRect();
 
   // when section in the viewport will return true
-  return re.top >= -300 && re.top <= 300;
+  return postion.top >= -300 && postion.top <= 300;
 }
 
 // active section
@@ -59,9 +79,12 @@ function activeSection() {
 
 //use DOM  to get the btn UP
 const btn = document.getElementById("btn");
-// when click on button "UP" scroll to the top of the page
 btn.addEventListener("click", (e) => {
-  document.body.scrollTop = 0;
+  // when ckick on button will move to top smoothly
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 });
 
 // show the up button when start scroll down
